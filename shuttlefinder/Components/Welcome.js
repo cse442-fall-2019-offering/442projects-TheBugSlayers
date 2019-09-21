@@ -7,7 +7,8 @@ import {
     View,
     Image,
     TextInput,
-    AppRegistry
+    AppRegistry,
+    Button
 } from 'react-native';
 // Welcome screen for App
 export default class Welcome extends Component {
@@ -15,7 +16,7 @@ export default class Welcome extends Component {
         super(props);
         this.state = {
             welcomemessage: 'Welcome to Shuttle Finder',
-            location: "Enter Location"
+            location: ''
         }
     }
 
@@ -23,13 +24,30 @@ export default class Welcome extends Component {
         welcomemessage: 'Welcome to Shuttle Finder',
         location: "Enter Location"
     }
-
+_onPressButton() {
+    alert('North campus shuttle is arriving soon')
+}
     render() {
         return ( <View style = {styles.container} >
+            <Image 
+            style={styles.image}
+            source={require('./ublogo.png')}
+            />
             <Text style = {{padding: 50, fontSize: 25}} > {this.state.welcomemessage} </Text>  
-            <TextInput style = {{padding: 70, fontSize: 15}} > {
-                this.state.location
-            } </TextInput> 
+            <TextInput 
+                style = {{padding: 70, fontSize: 15}}
+                placeholder="Enter your Location"
+                onChangeText = {(location) => this.setState({location})}
+                value={this.state.text}
+            /> 
+            < View style = {styles.buttonContainer} >
+                <Button
+            onPress = {
+                this._onPressButton
+            }
+            title = "Find Nearest Shuttle"
+            color = "#000000"	 />
+                </View>
             </View>
         );
     }
@@ -38,9 +56,18 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: 'powderblue',
+        backgroundColor: 'white',
         justifyContent: 'center',
-        alignItems: 'flex-start',
+        alignItems: 'center',
     },
+     buttonContainer: {
+         margin: 20,
+         alignItems: 'center',
+         justifyContent: 'center',
+     },
+     image: {
+        justifyContent: 'center',
+        alignItems: 'center',
+     }
 });
 AppRegistry.registerComponent('Welcome', () => Welcome);
