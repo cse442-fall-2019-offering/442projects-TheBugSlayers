@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 64743,
-  "expoServerNgrokUrl": "https://4g-d25.akshitub.shuttlefinder.exp.direct",
-  "packagerNgrokUrl": "https://packager.4g-d25.akshitub.shuttlefinder.exp.direct",
-  "ngrokPid": 64755
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
