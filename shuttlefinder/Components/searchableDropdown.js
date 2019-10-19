@@ -127,15 +127,23 @@ export default class Dropdown extends Component {
             selectedItem: {}
         }
     }
+    getSelectedlocation = ()=>{
+        var selectedlocation = this.state.selectedItem.name;
+
+        }
     render() {
-        return ( <
-            SearchableDropdown onItemSelect = {
+        return ( 
+            <SearchableDropdown onItemSelect = {
                 (item) => {
                     this.setState({
                         selectedItem: item
-                    });
-                    console.log(item)
+                        
+                    },
+                    this.props.getCurrentLocation(item.name),
+                    );
+                    
                 }
+                
             }
             containerStyle = {
                 {
