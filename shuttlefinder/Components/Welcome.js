@@ -10,6 +10,7 @@ import {
     AppRegistry,
     Button
 } from 'react-native';
+import Dropdown from './searchableDropdown';
 // Welcome screen for App
 export default class Welcome extends Component {
     constructor(props) {
@@ -34,12 +35,7 @@ _onPressButton() {
             source={require('./ublogo.png')}
             />
             <Text style = {{padding: 50, fontSize: 25}} > {this.state.welcomemessage} </Text>  
-            <TextInput 
-                style = {{padding: 70, fontSize: 15}}
-                placeholder="Enter your Location"
-                onChangeText = {(location) => this.setState({location})}
-                value={this.state.text}
-            /> 
+            <Dropdown />
             < View style = {styles.buttonContainer} >
                 <Button
             onPress = {
