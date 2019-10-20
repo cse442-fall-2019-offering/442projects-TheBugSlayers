@@ -8,7 +8,7 @@ import SearchableDropdown from 'react-native-searchable-dropdown';
 
 var items = [{
         id: 1,
-        name: 'Main/ Bailey Lot',
+        name: 'Main/Bailey Lot',
     },
     {
         id: 2,
@@ -36,11 +36,11 @@ var items = [{
     },
     {
         id: 8,
-        name: 'EOC / Gateway',
+        name: 'EOC/Gateway',
     },
     {
         id: 9,
-        name: 'CRTC',
+        name: 'CTRC',
     },
     {
         id: 10,
