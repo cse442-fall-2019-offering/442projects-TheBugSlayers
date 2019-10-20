@@ -13,11 +13,15 @@ import {
 import Dropdown from './searchableDropdown';
 import * as data from '../Shuttle_Data/Blue_Line.json';
 
-
-function getTime(selectedLocation) {
-    var foundTime = '';
+exports.realTime = () => {
     var d = new Date();
-    var time = ((d.getHours()) * 100) + d.getMinutes();
+    var retTime = ((d.getHours()) * 100) + d.getMinutes();
+    return retTime;
+}
+
+exports.getTime = (time, selectedLocation) => {
+    var foundTime = '';
+   // var time = realTime();
     for (var key in data) {
 
         var t2 = parseInt((data[key][selectedLocation]));
@@ -33,6 +37,7 @@ function getTime(selectedLocation) {
 
     return foundTime;
 }
+
 // Welcome screen for App
 export default class Welcome extends Component {
     constructor(props) {
@@ -43,7 +48,6 @@ export default class Welcome extends Component {
             currentLocation: '',
             selectedItem: {},
         }
-        //this.getLocation = this.getLocation.bind(this)
     }
 
     getLocation = l => {
@@ -59,8 +63,18 @@ export default class Welcome extends Component {
     }
     _onPressButton() {
         console.log(this.state.currentLocation + 'a');
-        var times = getTime(this.state.currentLocation);
-        alert('North campus shuttle is arriving soon at ' + times)
+
+        var t = exports.realTime();
+        var times = exports.getTime(t, this.state.currentLocation);
+
+        if (this.state.currentLocation != ''){
+            alert('Blue line shuttle is arriving soon at ' + times);
+        }
+        else{
+            alert('Enter a location first please!')
+        }
+
+        
     }
     render(){
         return( 
