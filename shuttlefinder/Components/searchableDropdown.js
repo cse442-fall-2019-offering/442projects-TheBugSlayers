@@ -170,8 +170,8 @@ export default class Dropdown extends Component {
                         selectedItem: item
                         
                     },
-                    this.props.getCurrentLocation(item.name),
-                    this.props.getCurrentLine(item.line),
+                    this.props.getCurrentLocation(item.name), //returns location to the prop
+                    this.props.getCurrentLine(item.line), // returns shuttle line associated with the location selected
                     );
                     
                 }
