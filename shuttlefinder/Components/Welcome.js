@@ -27,7 +27,7 @@ exports.getTime = (time, selectedLocation,selectedLine) => {
     var foundTime = '';
     var jsonfile='';
     console.log(selectedLine);
-   // var time = realTime();
+   // Chooses jsonfile according to selectedline 
     if(selectedLine=='Blue'){
             jsonfile=Blue;
     }
