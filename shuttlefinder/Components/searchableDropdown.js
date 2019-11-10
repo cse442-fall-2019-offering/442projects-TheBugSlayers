@@ -144,7 +144,7 @@ var items = [{
     },
     {
         id: 27,
-        name: 'Grenier',
+        name: 'Greiner Hall',
         line:'North',
     },
 ];
