@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 15328,
-  "expoServerNgrokUrl": "https://4g-d25.anonymous.shuttlefinder.exp.direct",
-  "packagerNgrokUrl": "https://packager.4g-d25.anonymous.shuttlefinder.exp.direct",
-  "ngrokPid": 1748,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "webpackServerPort": null
 }
