@@ -48,7 +48,7 @@ exports.getTime = (time, selectedLocation,selectedLine) => {
             foundTime = t2;
             console.log(t2);
             break;
-        }
+        }        
     }
 
     return foundTime;
@@ -132,7 +132,7 @@ export default class Welcome extends Component {
                 this._onPressButton.bind(this)
             }
             title = "Find Nearest Shuttle"
-            color = "#E53C17" />
+            color = "#000000" />
             </View> 
             </View>
         );
