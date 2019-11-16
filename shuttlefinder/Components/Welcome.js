@@ -14,7 +14,7 @@ import Dropdown from './searchableDropdown';
 import * as Green from '../Shuttle_Data/Green_Line.json';
 import * as North from '../Shuttle_Data/North_Shuttle.json';
 import * as Blue from '../Shuttle_Data/Blue_Line.json';
-//import * as Northweekend from '../Shuttle_Data/North_Shuttle_Weekend.json';
+import * as Northweekend from '../Shuttle_Data/North_Shuttle_Weekend.json';
 
 
 exports.realTime = () => {
@@ -26,6 +26,8 @@ exports.realTime = () => {
 exports.getTime = (time, selectedLocation,selectedLine) => {
     var foundTime = '';
     var jsonfile='';
+    var dayHelper = new Date().getDay;
+
     console.log(selectedLine);
    // Chooses jsonfile according to selectedline 
     if(selectedLine=='Blue'){
@@ -34,10 +36,13 @@ exports.getTime = (time, selectedLocation,selectedLine) => {
     else if(selectedLine=='Green'){
     jsonfile=Green;
     }
-    else if(selectedLine=='North'){
-        jsonfile=North;
+    else if(dayHelper == 0 || dayHelper == 6 && selectedLine == 'North'){
+        jsonfile = North;
     }
-    //console.log(jsonfile);
+    else if(dayHelper != 0 || dayHelper != 6 && selectedLine == 'North'){
+        jsonfile = Northweekend;
+    }
+    
     for (var key in jsonfile) {
 
         var t2 = parseInt((jsonfile[key][selectedLocation]));
