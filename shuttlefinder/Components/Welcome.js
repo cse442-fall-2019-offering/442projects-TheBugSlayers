@@ -102,7 +102,7 @@ export default class Welcome extends Component {
         else{
             alert('Enter a location first please!')
         }
-
+        this.state.currentLocation = '';
         
     }
     render(){
