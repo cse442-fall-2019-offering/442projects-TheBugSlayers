@@ -213,9 +213,7 @@ export default class Dropdown extends Component {
             items = {
                 items
             }
-            defaultIndex = {
-                2
-            }
+    
             resetValue = {
                 false
             }
