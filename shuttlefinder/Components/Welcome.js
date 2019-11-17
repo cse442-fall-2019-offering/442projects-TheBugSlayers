@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import {
     StyleSheet,
+    KeyboardAvoidingView,
     Text,
     View,
     Image,
@@ -111,8 +112,11 @@ export default class Welcome extends Component {
             getCurrentLocation: this.getLocation.bind(this),
             
         }
-        return( 
-            <View style = {styles.container} >
+        return(         
+            <KeyboardAvoidingView 
+            style = {styles.container}
+            behavior = "padding"
+            >
             <Image style = {
                 styles.image
             }
@@ -139,7 +143,7 @@ export default class Welcome extends Component {
             title = "Find Nearest Shuttle"
             color = "#000000" />
             </View> 
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }
