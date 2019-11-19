@@ -84,17 +84,17 @@ var items = [{
     },
     {
         id: 15,
-        name: 'Moody Terrace(Ellicott)',
+        name: 'Moody Terrace (Ellicott)',
         line:'North',
     },
     {
         id: 16,
-        name: 'South Lake Village(to Spine)',
+        name: 'South Lake Village (to Spine)',
         line:'North',
     },
     {
         id: 17,
-        name: 'Alumni/ Stadium',
+        name: 'Alumni/Stadium',
         line:'North',
     },
     {
@@ -114,7 +114,7 @@ var items = [{
     },
     {
         id: 21,
-        name: 'Cooke / Hochstetter',
+        name: 'Cooke/Hochstetter',
         line:'North',
     },
     {
