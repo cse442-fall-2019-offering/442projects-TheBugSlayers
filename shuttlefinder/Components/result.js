@@ -49,36 +49,22 @@ export default class Result extends Component {
       
     render(){
         const { navigation } = this.props;
-        var DATA = [
-            {
-              id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-              title: 'First Item',
-              station:this.state.location,
-               lines:this.state.line, 
-              timing:this.state.time,
-            },
-            {
-              id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-              title: 'Second Item',
-              station:this.state.location,
-               lines:this.state.line, 
-              timing:this.state.time,
-            },
-            {
-              id: '58694a0f-3da1-471f-bd96-145571e29d72',
-              title: 'Third Item',
-              station:this.state.location,
-               lines:this.state.line, 
-              timing:this.state.time,
-            },
-          ];
+        var DATA=[];
+        timearray=this.state.time;
+        for(i=0;i<timearray.length;i++){
+          DATA.push({
+          id: i.toString(),
+          station: this.state.location,
+          timing: this.state.time[i],
+          });
+        }
         return (
           <SafeAreaView style = {styles.container} >
             <FlatList
               data={DATA}
-              renderItem={({ item }) => <Item 
+              renderItem={({ item }) => 
+              <Item 
               station={item.station}
-              lines={item.lines}
               timing={item.timing}
               />}
               keyExtractor={item => item.id}
@@ -88,7 +74,6 @@ export default class Result extends Component {
 
       }
     }
- 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
