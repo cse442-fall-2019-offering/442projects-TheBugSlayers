@@ -9,13 +9,16 @@ import {
     Image,
     TextInput,
     AppRegistry,
-    Button
+    Button, navigation
 } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import Dropdown from './searchableDropdown';
 import * as Green from '../Shuttle_Data/Green_Line.json';
 import * as North from '../Shuttle_Data/North_Shuttle.json';
 import * as Blue from '../Shuttle_Data/Blue_Line.json';
 import * as Northweekend from '../Shuttle_Data/North_Shuttle_Weekend.json';
+import Result from './result.js';
 
 
 exports.realTime = () => {
@@ -60,6 +63,8 @@ exports.getTime = (time, selectedLocation,selectedLine) => {
     return foundTime;
 }
 
+
+
 // Welcome screen for App
 export default class Welcome extends Component {
     constructor(props) {
@@ -72,7 +77,18 @@ export default class Welcome extends Component {
             currentLine: '',
         }
     }
-
+    static navigationOptions = {
+        title: 'Home',
+        headerStyle: {
+        backgroundColor: '#fff',
+        },
+        headerTintColor: '#000',
+        headertitleStyle: {
+        fontWeight: 'bold',
+        textAlign:"center", 
+        flex:1 
+        },
+        };
     getLocation = l => {
         //console.log(l + 'aaa');
         this.setState({
@@ -105,8 +121,15 @@ export default class Welcome extends Component {
         }
         this.state.currentLocation = '';
         
+       
+       this.props.navigation.navigate('Results', {
+           location:this.state.currentLocation,
+           line:this.state.currentLine,
+           time:times
+       })
     }
     render(){
+        const {navigate} = this.props.navigation;
         let props ={
             getCurrentLine: this.getLine.bind(this),
             getCurrentLocation: this.getLocation.bind(this),
