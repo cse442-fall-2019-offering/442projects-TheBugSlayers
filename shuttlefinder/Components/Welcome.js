@@ -119,14 +119,13 @@ export default class Welcome extends Component {
         else{
             alert('Enter a location first please!')
         }
+        this.props.navigation.navigate('Results', {
+            location:this.state.currentLocation,
+            line:this.state.currentLine,
+            time:times
+        })
         this.state.currentLocation = '';
-        
-       
-       this.props.navigation.navigate('Results', {
-           location:this.state.currentLocation,
-           line:this.state.currentLine,
-           time:times
-       })
+   
     }
     render(){
         const {navigate} = this.props.navigation;
