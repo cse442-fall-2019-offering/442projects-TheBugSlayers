@@ -28,11 +28,9 @@ exports.realTime = () => {
 }
 
 exports.getTime = (time, selectedLocation,selectedLine) => {
-    var foundTime = '';
+    var foundTime = [];
     var jsonfile='';
-    var dayHelper = new Date().getDay;
-
-    console.log(selectedLine);
+    var dayHelper = new Date().getDay();
    // Chooses jsonfile according to selectedline 
     if(selectedLine=='Blue'){
             jsonfile=Blue;
@@ -41,21 +39,21 @@ exports.getTime = (time, selectedLocation,selectedLine) => {
     jsonfile=Green;
     }
     else if(dayHelper == 0 || dayHelper == 6 && selectedLine == 'North'){
-        jsonfile = North;
+        jsonfile = Northweekend;
     }
     else if(dayHelper != 0 || dayHelper != 6 && selectedLine == 'North'){
-        jsonfile = Northweekend;
+        jsonfile = North;
     }
     
     for (var key in jsonfile) {
 
         var t2 = parseInt((jsonfile[key][selectedLocation]));
 
-        console.log(t2);
+       // console.log(t2);
         if (time < t2) {
             console.log("Found next time " + t2);
-            foundTime = t2;
-            console.log(t2);
+            foundTime.push(t2);
+            if(foundTime.length==4)
             break;
         }        
     }
@@ -114,16 +112,16 @@ export default class Welcome extends Component {
         var times = exports.getTime(t, this.state.currentLocation,this.state.currentLine);
 
         if (this.state.currentLocation != ''){
-            alert('Shuttle is arriving soon at ' + times);
+            this.props.navigation.navigate('Results', {
+                location: this.state.currentLocation,
+                line: this.state.currentLine,
+                time: times
+            })
         }
         else{
             alert('Enter a location first please!')
         }
-        this.props.navigation.navigate('Results', {
-            location:this.state.currentLocation,
-            line:this.state.currentLine,
-            time:times
-        })
+        
         this.state.currentLocation = '';
    
     }
