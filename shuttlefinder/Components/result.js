@@ -13,13 +13,14 @@ import {
     SafeAreaView, 
     FlatList,
     navigation,
-    Linking
+    Linking,
+    TouchableOpacity
 } from 'react-native';
 import Constants from 'expo-constants';
 
 
   
-  function Item({ station, lines, timing }) {
+  function Item({ station, lines, timing}) {
     return (
       <View style={styles.item}>
         <Text style={styles.title}>{station}</Text>
@@ -28,7 +29,15 @@ import Constants from 'expo-constants';
       </View>
     );
   }
-
+  
+function gettracker(lineinfo){
+    switch (lineinfo) {
+      case 'Blue':
+        return 'http://busviewer.insightmobiledata.com/Default.aspx?Key=b3crlhss89uJlssllWef8';
+      case 'North':
+        return 'http://busviewer.insightmobiledata.com/Default.aspx?Key=b3crlhss8kuJissllWef8';
+    }
+}
 export default class Result extends Component {
     
     constructor(props) {
@@ -40,14 +49,17 @@ export default class Result extends Component {
         };
         console.log("a" +this.props.navigation.state.params.location);
     }
-    
+            
+
     static navigationOptions = {
         title: "Results",
         headerStyle: {
         backgroundColor: "#fff"
         }
     };
-      
+      onPress = () => {
+        Linking.openURL(gettracker(this.state.line))
+      }
     render(){
         const { navigation } = this.props;
         var DATA=[];
@@ -66,27 +78,33 @@ export default class Result extends Component {
           timing: this.state.time[i],
           });
         }
+          if((this.state.line == 'Blue' || this.state.line == 'North') && timearray.length != 0) {
+            tracker = <Button style = {
+                styles.item
+              }
+              onPress = {
+                this.onPress
+              } 
+              title = "Track it"></Button>;
+            }else{
+              tracker=null;
+            }   
+        
         return (
           <SafeAreaView style = {styles.container} >
             <FlatList
               data={DATA}
-              renderItem={({ item }) => 
+              renderItem={({ item }) =>
               <Item 
               station={item.station}
               timing={item.timing}
-              />}
-              keyExtractor={item => item.id}
-            />
-            <Text style = {
-              {
-                color: 'blue'
-              }
+              />
             }
-            onPress = {
-                () => Linking.openURL('http://google.com')
-              } >
-              Google
-            </Text>
+            keyExtractor = {
+              item => item.id
+            }
+            />
+            {tracker}
           </SafeAreaView>
         );
 
@@ -98,8 +116,6 @@ const styles = StyleSheet.create({
       marginTop: Constants.statusBarHeight,
     },
     item: {
-      //  marginRight: 40,
-      //  marginLeft: 40,
         marginTop: 10,
         paddingTop: 20,
         paddingBottom: 20,
@@ -110,12 +126,25 @@ const styles = StyleSheet.create({
         padding: 20,
         marginVertical: 2,
         marginHorizontal: 16,
+    }, buttonContainer: {
+      margin: 20,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 10,
+      borderWidth: 1,
+      backgroundColor: '#68a0cf',
+      borderColor: '#fff'
     },
     title: {
       fontSize: 16,
       color: '#fff',
       textAlign: 'center'
     },
+    trackButton: {
+      fontSize: 24,
+      color: '#fff',
+      textAlign: 'center'
+    }
   });
 
 AppRegistry.registerComponent('Result', () => Result);
