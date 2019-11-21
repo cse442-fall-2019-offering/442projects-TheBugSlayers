@@ -146,7 +146,8 @@ export default class Welcome extends Component {
             /> 
             <Text style = {{
                     padding: 50,
-                    fontSize: 25
+                    fontSize: 25,
+                    textAlign: 'center',
                 }
             }> 
                 {
@@ -161,7 +162,7 @@ export default class Welcome extends Component {
                 this._onPressButton.bind(this)
             }
             title = "Find Nearest Shuttle"
-            color = "#000000" />
+            color = "#fff" />
             </View> 
             </KeyboardAvoidingView>
         );
@@ -181,8 +182,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 10,
         borderWidth: 1,
-        backgroundColor: '#4966C4',
-        borderColor: '#4966C4'
+        backgroundColor: '#68a0cf',
+        borderColor: '#fff'
     },
     image: {
         justifyContent: 'center',

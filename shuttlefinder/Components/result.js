@@ -12,7 +12,8 @@ import {
     Button,
     SafeAreaView, 
     FlatList,
-    navigation
+    navigation,
+    Linking
 } from 'react-native';
 import Constants from 'expo-constants';
 
@@ -51,6 +52,13 @@ export default class Result extends Component {
         const { navigation } = this.props;
         var DATA=[];
         timearray=this.state.time;
+        if(timearray.length==0){
+          DATA.push({
+            id: '0',
+            station: this.state.location,
+            timing: 'No pickup until tomorrow',
+          })
+        }
         for(i=0;i<timearray.length;i++){
           DATA.push({
           id: i.toString(),
@@ -69,6 +77,16 @@ export default class Result extends Component {
               />}
               keyExtractor={item => item.id}
             />
+            <Text style = {
+              {
+                color: 'blue'
+              }
+            }
+            onPress = {
+                () => Linking.openURL('http://google.com')
+              } >
+              Google
+            </Text>
           </SafeAreaView>
         );
 
@@ -80,13 +98,23 @@ const styles = StyleSheet.create({
       marginTop: Constants.statusBarHeight,
     },
     item: {
-      backgroundColor: '#b0e0e6',
-      padding: 20,
-      marginVertical: 8,
-      marginHorizontal: 16,
+      //  marginRight: 40,
+      //  marginLeft: 40,
+        marginTop: 10,
+        paddingTop: 20,
+        paddingBottom: 20,
+        backgroundColor: '#68a0cf',
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#fff',
+        padding: 20,
+        marginVertical: 2,
+        marginHorizontal: 16,
     },
     title: {
       fontSize: 16,
+      color: '#fff',
+      textAlign: 'center'
     },
   });
 
