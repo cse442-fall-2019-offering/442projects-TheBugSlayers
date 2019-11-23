@@ -9,16 +9,15 @@ import {
     Image,
     TextInput,
     AppRegistry,
-    Button, navigation
+    Button, navigation,
+    Switch
 } from 'react-native';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
 import Dropdown from './searchableDropdown';
+import ADateTimePicker from "react-native-modal-datetime-picker";
 import * as Green from '../Shuttle_Data/Green_Line.json';
 import * as North from '../Shuttle_Data/North_Shuttle.json';
 import * as Blue from '../Shuttle_Data/Blue_Line.json';
 import * as Northweekend from '../Shuttle_Data/North_Shuttle_Weekend.json';
-import Result from './result.js';
 
 
 exports.realTime = () => {
@@ -73,8 +72,34 @@ export default class Welcome extends Component {
             currentLocation: '',
             selectedItem: {},
             currentLine: '',
+            switchValue: false,
+            isDateTimePickerVisible: false,
+            chosenTime:0,
         }
     }
+    showDateTimePicker = () => {
+        this.setState({
+            isDateTimePickerVisible: true,
+        });
+    };
+
+    hideDateTimePicker = () => {
+        this.setState({
+            isDateTimePickerVisible: false,
+        });
+        console.log(this.state.switchValue)
+    };
+
+    handleDatePicked = date => {
+        console.log("A date has been picked: ", date);
+        var retTime = ((date.getHours()) * 100) + date.getMinutes();
+        this.setState({
+            chosenTime:retTime
+        });
+        
+        this.hideDateTimePicker();
+    };
+
     static navigationOptions = {
         title: 'Home',
         headerStyle: {
@@ -104,11 +129,31 @@ export default class Welcome extends Component {
         welcomemessage: 'Welcome to Shuttle Finder',
         location: "Enter Location"
     }
+    toggleSwitch = value => {
+        //onValueChange of the switch this function will be called
+        this.setState({
+            switchValue: value
+        });
+        if(value)
+            this.showDateTimePicker();
 
+        //state changes according to switch
+        //which will result in re-render the text
+    };
+    onCancel = ()=>{
+        this.setState({
+            isDateTimePickerVisible: false,
+            switchValue:false
+        });
+        
+    }
     _onPressButton() {
         console.log(this.state.currentLocation + 'a');
-
+        if(this.state.switchValue){
+            var t=this.state.chosenTime;
+        }else{
         var t = exports.realTime();
+        }
         var times = exports.getTime(t, this.state.currentLocation,this.state.currentLine);
 
         if (this.state.currentLocation != ''){
@@ -125,6 +170,7 @@ export default class Welcome extends Component {
         this.state.currentLocation = '';
    
     }
+
     render(){
         const {navigate} = this.props.navigation;
         let props ={
@@ -152,9 +198,36 @@ export default class Welcome extends Component {
             }> 
                 {
                 this.state.welcomemessage
-                } </Text>   
-                <Dropdown {...props}/> 
-            <View style = {styles.buttonContainer} >
+                } 
+            </Text>   
+            <Dropdown {...props}/>
+            <Text style ={{
+                padding:10,
+                fontSize:14,
+                textAlign:'center'
+            }
+            }> Search Later Shuttle Times </Text>
+            <Switch onValueChange={this.toggleSwitch}
+
+            value = {this.state.switchValue}
+            />
+            <ADateTimePicker
+            isVisible = {
+                this.state.isDateTimePickerVisible
+            }
+            onConfirm = {
+                this.handleDatePicked
+            }
+            onCancel = {
+                this.onCancel
+            }
+            mode={'time'}
+            titleIOS='Pick a Time'
+            date= {new Date()}
+            />
+            <View style = {
+                styles.buttonContainer
+            }>
             <Button style = {
                 styles.buttonContainer
             }
@@ -163,7 +236,7 @@ export default class Welcome extends Component {
             }
             title = "Find Nearest Shuttle"
             color = "#fff" />
-            </View> 
+            </View>
             </KeyboardAvoidingView>
         );
     }
@@ -182,7 +255,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 10,
         borderWidth: 1,
-        backgroundColor: '#68a0cf',
+        backgroundColor: '#005bbb',
         borderColor: '#fff'
     },
     image: {
