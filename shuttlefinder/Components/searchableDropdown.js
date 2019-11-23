@@ -194,7 +194,7 @@ export default class Dropdown extends Component {
                 {
                     padding: 10,
                     marginTop: 2,
-                    backgroundColor: '#8eb1d6',
+                    backgroundColor: '#005bbb',
                     borderColor: '#bbb',
                     borderWidth: 1,
                     borderRadius: 5,
@@ -202,7 +202,7 @@ export default class Dropdown extends Component {
             }
             itemTextStyle = {
                 {
-                    color: '#222'
+                    color: '#fff'
                 }
             }
             itemsContainerStyle = {
