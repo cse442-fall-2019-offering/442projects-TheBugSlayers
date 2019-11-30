@@ -167,7 +167,7 @@ export default class Welcome extends Component {
             alert('Enter a location first please!')
         }
         
-        this.state.currentLocation = '';
+        //this.state.currentLocation = '';
    
     }
 
@@ -235,7 +235,7 @@ export default class Welcome extends Component {
                 this._onPressButton.bind(this)
             }
             title = "Find Nearest Shuttle"
-            color = "#fff" />
+            color = '#005bbb' />
             </View>
             </KeyboardAvoidingView>
         );
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 10,
         borderWidth: 1,
-        backgroundColor: '#005bbb',
+        backgroundColor: '#fff',
         borderColor: '#fff'
     },
     image: {
