@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 17744,
+  "expoServerNgrokUrl": "https://xp-fvt.anonymous.shuttlefinder.exp.direct",
+  "packagerNgrokUrl": "https://packager.xp-fvt.anonymous.shuttlefinder.exp.direct",
+  "ngrokPid": 9212,
   "webpackServerPort": null
 }

@@ -64,6 +64,7 @@ export default class Result extends Component {
         const { navigation } = this.props;
         var DATA=[];
         timearray=this.state.time;
+        
         if(timearray.length==0){
           DATA.push({
             id: '0',
@@ -72,10 +73,28 @@ export default class Result extends Component {
           })
         }
         for(i=0;i<timearray.length;i++){
+          var t1 = this.state.time[i].toString();
+          if(t1.length==3){
+            var t2 = '0'+t1.toString().slice(0,1)+':'+t1.toString().slice(1)+'am'; 
+          }
+          else{
+            var num = Number(t1.toString().slice(0,2));
+            if(num>23){
+              num = num-24
+              var t2 = '0'+num.toString()+':'+t1.toString().slice(2)+'am';
+            }
+            else if (num>12){
+              num = num-12
+              var t2 = num.toString()+':'+t1.toString().slice(2)+'pm';
+            }
+            else{
+              var t2 = num.toString()+':'+t1.toString().slice(2)+'am';
+            }
+          }
           DATA.push({
           id: i.toString(),
           station: this.state.location,
-          timing: this.state.time[i],
+          timing: t2,       
           });
         }
           if((this.state.line == 'Blue' || this.state.line == 'North') && timearray.length != 0) {

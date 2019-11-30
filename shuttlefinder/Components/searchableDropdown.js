@@ -220,12 +220,12 @@ export default class Dropdown extends Component {
             textInputProps = {
                 {
                     placeholder: "Enter your Location",
-                    underlineColorAndroid: "transparent",
                     style: {
                         padding: 12,
                         borderWidth: 1,
                         borderColor: '#ccc',
                         borderRadius: 5,
+                        width: 200,
                     },
                 }
             }
