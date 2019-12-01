@@ -10,6 +10,7 @@ import {
     TextInput,
     AppRegistry,
     Button, navigation,
+    Linking,
     Switch
 } from 'react-native';
 import Dropdown from './searchableDropdown';
@@ -170,6 +171,9 @@ export default class Welcome extends Component {
         //this.state.currentLocation = '';
    
     }
+    onPressHelp = () => {
+        Linking.openURL('http://www.buffalo.edu/parking/getting-around-UB/bus.html');
+    }
 
     render(){
         const {navigate} = this.props.navigation;
@@ -237,6 +241,13 @@ export default class Welcome extends Component {
             title = "Find Nearest Shuttle"
             color = '#005bbb' />
             </View>
+            < Button style = {
+                styles.help
+            }
+            onPress = {
+                this.onPressHelp
+            }
+            title = "Need Help?" > </Button>
             </KeyboardAvoidingView>
         );
     }
@@ -261,6 +272,21 @@ const styles = StyleSheet.create({
     image: {
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    help: {
+        marginTop: 40,
+        paddingTop: 20,
+        paddingBottom: 20,
+        backgroundColor: '#005bbb',
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#fff',
+        padding: 20,
+        marginVertical: 2,
+        marginHorizontal: 16,
+        position: 'absolute',
+            bottom: 0,
+
     }
 });
 AppRegistry.registerComponent('Welcome', () => Welcome);

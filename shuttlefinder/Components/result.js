@@ -75,20 +75,20 @@ export default class Result extends Component {
         for(i=0;i<timearray.length;i++){
           var t1 = this.state.time[i].toString();
           if(t1.length==3){
-            var t2 = '0'+t1.toString().slice(0,1)+':'+t1.toString().slice(1)+'am'; 
+            var t2 = '0'+t1.toString().slice(0,1)+':'+t1.toString().slice(1)+' AM'; 
           }
           else{
             var num = Number(t1.toString().slice(0,2));
             if(num>23){
               num = num-24
-              var t2 = '0'+num.toString()+':'+t1.toString().slice(2)+'am';
+              var t2 = '0'+num.toString()+':'+t1.toString().slice(2)+' AM';
             }
             else if (num>12){
               num = num-12
-              var t2 = num.toString()+':'+t1.toString().slice(2)+'pm';
+              var t2 = num.toString()+':'+t1.toString().slice(2)+' PM';
             }
             else{
-              var t2 = num.toString()+':'+t1.toString().slice(2)+'am';
+              var t2 = num.toString()+':'+t1.toString().slice(2)+' AM';
             }
           }
           DATA.push({
