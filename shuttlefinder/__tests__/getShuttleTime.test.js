@@ -12,13 +12,3 @@ test('should get the actual time', () => {
 })
 
 
-/*
-Edge case input when user inputs no value for search 
-*/
-
-test('should get the actual time', () => {
-    const value = getTime(1900, '');
-    expect(value).toBe('');
-
-
-})
