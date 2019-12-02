@@ -27,10 +27,15 @@ exports.realTime = () => {
     return retTime;
 }
 
+exports.fooDay = () => {
+    return cow = new Date().getDay();
+}
+
 exports.getTime = (time, selectedLocation,selectedLine) => {
     var foundTime = [];
     var jsonfile='';
-    var dayHelper = new Date().getDay();
+    var dayHelper = exports.fooDay();
+     
    // Chooses jsonfile according to selectedline 
     if(selectedLine=='Blue'){
             jsonfile=Blue;
@@ -163,12 +168,13 @@ export default class Welcome extends Component {
                 line: this.state.currentLine,
                 time: times
             })
+            this.state.currentLocation = '';
         }
         else{
             alert('Enter a location first please!')
         }
         
-        //this.state.currentLocation = '';
+        
    
     }
     onPressHelp = () => {
@@ -238,9 +244,13 @@ export default class Welcome extends Component {
             onPress = {
                 this._onPressButton.bind(this)
             }
-            title = "Find Nearest Shuttle"
-            color = '#005bbb' />
+            title = "Find Shuttle Timings"
+             />
             </View>
+            
+            <View style = {
+                styles.buttonContainer
+            }>
             < Button style = {
                 styles.help
             }
@@ -248,6 +258,7 @@ export default class Welcome extends Component {
                 this.onPressHelp
             }
             title = "Need Help?" > </Button>
+            </View>
             </KeyboardAvoidingView>
         );
     }
@@ -266,26 +277,21 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 10,
         borderWidth: 1,
-        backgroundColor: '#fff',
-        borderColor: '#fff'
+        backgroundColor: 'white',
+        borderColor: '#005bbb'
     },
     image: {
         justifyContent: 'center',
         alignItems: 'center',
     },
     help: {
-        marginTop: 40,
-        paddingTop: 20,
-        paddingBottom: 20,
-        backgroundColor: '#005bbb',
+        margin: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: '#fff',
-        padding: 20,
-        marginVertical: 2,
-        marginHorizontal: 16,
-        position: 'absolute',
-            bottom: 0,
+        backgroundColor: 'white',
+        borderColor: '#005bbb'
 
     }
 });
